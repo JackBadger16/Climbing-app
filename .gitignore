@@ -1,0 +1,2 @@
+# Ignore the node_modules as they are used to build, but we don't want to save them in version control
+node_modules
