@@ -35,9 +35,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
   );
 }
 
-const x = (y => {
 
-});
 
 // AddedClimbList Component
 function AddedClimbList({ allTicks, handleDelete }) {
