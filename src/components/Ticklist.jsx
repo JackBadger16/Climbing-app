@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addTick, removeTick, loadTicks } from "./actions";
 
 
+
 // NewTick Component
 function NewTick({ newTick, handleChange, handleSubmit }) {
   return (
@@ -83,52 +84,79 @@ function AddedClimbList({ allTicks, handleDelete }) {
 
 // Main TicklistApp Component
 export default function Ticklist() {
-  const [newClimb, setNewClimb] = useState({});
-  const [removedTicks, setRemovedTicks] = useState([]);
-  const [allTicks, setAllTicks] = useState([]);
+const dispatch = useDispatch()
+const allTicks =  useSelector((state) => state.tickReducer.removedTicks)
+const removedTicks = useSelector((state) => state.tickReducer.removedTicks)
 
-  const handleChange = ({ target }) => {
-    const { name, value } = target;
-    setNewClimb((prev) => ({ ...prev, id: Date.now(), [name]: value }));
-  };
+useEffect(() => {
+  const storedTicks = localStorage.getItem('ticks')
+  if (storedTicks) {
+    dispatch(loadTicks(JSON.parse(storedTicks)))
+}
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!newClimb.title) return;
-    setAllTicks((prev) => [newClimb, ...prev]);
-    setNewClimb({});
-  };
+}, [dispatch])
 
-  const handleDelete = (tickIDToRemove) => {
-    setAllTicks((prev) => {
-      const tickToRemove = prev.find((tick) => tick.id === tickIDToRemove);
-      if (tickToRemove) {
-        setRemovedTicks((removed) => [tickToRemove, ...removed]);
-      }
-      return prev.filter((tick) => tick.id !== tickIDToRemove);
-    });
-  };
+const handleSubmit = (event) => {
+  event.preventDefault()
+  const newTick = {id: Date.now(), title: 'New Tick'}
+  dispatch(addTick(newTick))
+}
+
+const handleDelete = (tickId) => {
+  dispatch(removeTick(tickId))
+}
+
+
+
+
+
+
+  // const [newClimb, setNewClimb] = useState({});
+  // const [removedTicks, setRemovedTicks] = useState([]);
+  // const [allTicks, setAllTicks] = useState([]);
+
+  // const handleChange = ({ target }) => {
+  //   const { name, value } = target;
+  //   setNewClimb((prev) => ({ ...prev, id: Date.now(), [name]: value }));
+  // };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   if (!newClimb.title) return;
+  //   setAllTicks((prev) => [newClimb, ...prev]);
+  //   setNewClimb({});
+  // };
+
+  // const handleDelete = (tickIDToRemove) => {
+  //   setAllTicks((prev) => {
+  //     const tickToRemove = prev.find((tick) => tick.id === tickIDToRemove);
+  //     if (tickToRemove) {
+  //       setRemovedTicks((removed) => [tickToRemove, ...removed]);
+  //     }
+  //     return prev.filter((tick) => tick.id !== tickIDToRemove);
+  //   });
+  // };
 
   // save ticks to local storage whenever allTicks changes
-  useEffect(() => {
-    localStorage.setItem("ticks", JSON.stringify(allTicks));
-  }, [allTicks]);
+  // useEffect(() => {
+  //   localStorage.setItem("ticks", JSON.stringify(allTicks));
+  // }, [allTicks]);
 
-  // save removed ticks to local storage whenever removedTicks changes
-  useEffect(() => {
-    localStorage.setItem("removedTicks", JSON.stringify(removedTicks));
-  }, [removedTicks]);
-  // Load ticks from local storage when component mount
-  useEffect(() => {
-    const storedTicks = localStorage.getItem("ticks");
-    if (storedTicks) {
-      setAllTicks(JSON.parse(storedTicks));
-    }
-    const storedRemovedTicks = localStorage.getItem("removedTicks");
-    if (storedRemovedTicks) {
-      setRemovedTicks(JSON.parse(storedRemovedTicks));
-    }
-  }, []);
+  // // save removed ticks to local storage whenever removedTicks changes
+  // useEffect(() => {
+  //   localStorage.setItem("removedTicks", JSON.stringify(removedTicks));
+  // }, [removedTicks]);
+  // // Load ticks from local storage when component mount
+  // useEffect(() => {
+  //   const storedTicks = localStorage.getItem("ticks");
+  //   if (storedTicks) {
+  //     setAllTicks(JSON.parse(storedTicks));
+  //   }
+  //   const storedRemovedTicks = localStorage.getItem("removedTicks");
+  //   if (storedRemovedTicks) {
+  //     setRemovedTicks(JSON.parse(storedRemovedTicks));
+  //   }
+  // }, []);
 
  
 
@@ -212,10 +240,11 @@ export default function Ticklist() {
     <main className="min-h-screen p-8 bg-[#0a192f]">
       <div name="ticklist" className="max-w-3xl mx-auto ">
         <h1 className="text-2xl font-bold mb-6">Ticklist</h1>
-        <NewTick
-          newTick={newClimb}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
+        <NewTick onSubmit={handleSubmit}
+
+          // newTick={newClimb}
+          // handleChange={handleChange}
+          // handleSubmit={handleSubmit}
         />
         <AddedClimbList allTicks={allTicks} handleDelete={handleDelete} />
         <DeletedTicksGrid removedTicks={removedTicks}/>
