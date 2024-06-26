@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addTick, removeTick, loadTicks } from "./actions";
+
 
 // NewTick Component
 function NewTick({ newTick, handleChange, handleSubmit }) {
