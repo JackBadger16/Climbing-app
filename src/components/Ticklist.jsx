@@ -9,7 +9,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
     >
       <input
         name="title"
-        placeholder="New Tick"
+        placeholder="New Climb"
         value={newTick.title || ""}
         onChange={handleChange}
         className="border border-gray-300 p-2 mb-2 w-full rounded"
@@ -25,7 +25,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
           />
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 mb-2 w-full rounded "
+            className="bg-blue-500 text-white py-2 mb-2 w-full rounded-md"
           >
             Add Climb
           </button>
@@ -47,7 +47,7 @@ function AddedClimbList({ allTicks, handleDelete }) {
             <h2 className="text-lg font-semibold ">{title}</h2>
             <button
               onClick={() => handleDelete(id)}
-              className="bg-red-500 flex  text-white py-3 px-6 round hover:bg-red-600 rounded-md"
+              className="bg-red-500 flex shadow-[#040c16] shadow-sm hover:scale-110 duration-500 text-white py-3 px-6 rounded-full "
             >
               Sent it!
             </button>
@@ -68,7 +68,7 @@ function AddedClimbList({ allTicks, handleDelete }) {
       {removedTicks.map((tick) => (
         <div key={tick.id} className="bg-white p-4 rounded shadow-md">
           <h2 className="text-lg font-semibold">{tick.title}</h2>
-          {tick.description.length > 0 && (
+          {tick.description?.length > 0 && (
             <p className="text-gray-700">{tick.description}</p>
           )}
         </div>
