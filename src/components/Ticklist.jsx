@@ -35,9 +35,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
   );
 }
 
-const x = (y => {
 
-});
 
 // AddedClimbList Component
 function AddedClimbList({ allTicks, handleDelete }) {
@@ -49,9 +47,9 @@ function AddedClimbList({ allTicks, handleDelete }) {
             <h2 className="text-lg font-semibold ">{title}</h2>
             <button
               onClick={() => handleDelete(id)}
-              className="bg-red-500 text-white py-1 px-3 round hover:bg-red-600 rounded-md"
+              className="bg-red-500 flex  text-white py-3 px-6 round hover:bg-red-600 rounded-md"
             >
-              X
+              Sent it!
             </button>
           </div>
           {description.length > 0 && (
@@ -84,7 +82,7 @@ function AddedClimbList({ allTicks, handleDelete }) {
 export default function Ticklist() {
   const [newClimb, setNewClimb] = useState({});
   const [removedTicks, setRemovedTicks] = useState([]);
-  const [allTicks, setAllTicks] = useState([]);
+  const [allTicks, setAllTicks] = useState(localStorage.getItem('ticks') ? JSON.parse(localStorage.getItem('ticks')) : []);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -117,6 +115,7 @@ export default function Ticklist() {
   useEffect(() => {
     localStorage.setItem("removedTicks", JSON.stringify(removedTicks));
   }, [removedTicks]);
+
   // Load ticks from local storage when component mount
   useEffect(() => {
     const storedTicks = localStorage.getItem("ticks");
@@ -128,84 +127,6 @@ export default function Ticklist() {
       setRemovedTicks(JSON.parse(storedRemovedTicks));
     }
   }, []);
-
- 
-
-  // DeletedTicksGrid Component style with tailwind
-  // const deletedTicksGridStyle = {
-  //   gridTemplateColumns: "repeat(2, 1fr)",
-  //   gap: "1rem",
-  //   };
-  //   return (
-  //     <div className="container mx-auto p-4 pt-6 md:p-6 lg:p
-  //     -12">
-  //       <h1 className="text-3xl font-bold mb-4">Climbing Log
-  //       </h1>
-  //       <form onSubmit={handleCreateTick}>
-  //         <input
-  //         type="text"
-  //         value={newClimb.title}
-  //         onChange={(e) =>
-  //           setNewClimb((prev) => ({ ...prev, title: e.target.value }
-  //             )}
-  //             placeholder="Enter climb title"
-  //             className="w-full p-2 pl-10 text-sm text-gray-700"
-  //             />
-  //             <button
-  //             type="submit"
-  //             className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px
-  //             -4 rounded"
-  //             >
-  //               Add Climb
-  //               </button>
-  //               </form>
-  //               <div className="flex justify-between mb-4">
-  //                 <h2 className="text-2xl font-bold">All Climbs
-  //                 </h2>
-  //                 <button
-  //                 onClick={handleToggleRemovedTicks}
-  //                 className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px
-  //                 -4 rounded"
-  //                 >
-  //                   {showRemovedTicks ? "Hide Removed" : "Show Removed"}  Climbs
-  //                   </button>
-  //                   </div>
-  //                   <div className="grid grid-cols-1 gap-4 mb-4">
-  //                     {allTicks.map((tick) => (
-  //                       <TickCard
-  //                       key={tick.id}
-  //                       tick={tick}
-  //                       onDelete={handleDeleteTick}
-  //                       onEdit={handleEditTick}
-  //                       />
-  //                       ))}
-  //                       </div>
-  //                       {showRemovedTicks && (
-  //                         <div style={deletedTicksGridStyle}>
-  //                         <h2 className="text-2xl font-bold">Removed Climbs
-  //                         </h2>
-  //                         <div className="grid grid-cols-1 gap-4 mb-4">
-  //                         </div>
-  //                   </div>
-  //                 </button>
-  //               </div>
-  //             </button>
-  //       </form>
-  //     </div>
-  // const DeletedTicksGrid = () => {
-  //   return (
-  //     <div>
-  //       <h2>Deleted Ticks</h2>
-  //       <ul>
-  //         {removedTicks.map((tick) => (
-  //           <li key={tick.id}>
-  //             {tick.title} - {tick.grade}
-  //             </li>
-  //             ))}
-  //             </ul>
-  //             </div>
-  //             );
-  //             };
 
   return (
     <main className="min-h-screen p-8 bg-[#0a192f]">
