@@ -35,8 +35,6 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
   );
 }
 
-
-
 // AddedClimbList Component
 function AddedClimbList({ allTicks, handleDelete }) {
   return (
@@ -61,8 +59,8 @@ function AddedClimbList({ allTicks, handleDelete }) {
   );
 }
 
- // DeletedTicksGrid Component
- function DeletedTicksGrid({ removedTicks }) {
+// DeletedTicksGrid Component
+function DeletedTicksGrid({ removedTicks, handleEdit }) {
   return (
     <div className="grid grid-cols-1 gap-4 p-4">
       {removedTicks.map((tick) => (
@@ -71,18 +69,91 @@ function AddedClimbList({ allTicks, handleDelete }) {
           {tick.description?.length > 0 && (
             <p className="text-gray-700">{tick.description}</p>
           )}
+          <button
+          onClick={() => handleEdit(tick)}
+          className="bg-blue-500 text-white py-2 mb-2 w-full rounded-md"
+          >
+            Edit
+          </button>
         </div>
       ))}
     </div>
   );
 }
 
+ // Edit Component 
+ const EditTick = ({tick, handleSave, handleCancel}) => {
+  const [title, setTitle] = useState(tick.title)
+  const [description, setDescription] = useState(tick.description)
+  
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    handleSave({id: tick.id, title, description})
+  }
+  return (
+    <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-md">
+      <input
+      name="title"
+      placeholder="Edit Climb"
+      value={title}
+      onChange={(e) => setTitle(e.target)}
+      className="border border-gray-300 p-2 mb-2 w-full rounded" />
+      <textarea
+      name="description"
+      placeholder="Edit Details..."
+      value={description}
+      onChange={(e) => setDescription(e.target.value)}
+      className="border border-gray-300 p-2 mb-2 w-full rounded" />
+      <button
+      type="submit"
+      className="bg-red-500 text-white py-2 mb-2 w-full rounded-md"
+      >
+
+        Save
+        </button>
+        <button
+        onClick={handleCancel}
+        className="bg-blue-500 text-white py-2 mb-2 w-full rounded-md"
+        >
+
+        Cancel
+        
+      </button>
+
+    </form>
+  )
+    }
+
+    
 
 // Main TicklistApp Component
 export default function Ticklist() {
   const [newClimb, setNewClimb] = useState({});
   const [removedTicks, setRemovedTicks] = useState([]);
-  const [allTicks, setAllTicks] = useState(localStorage.getItem('ticks') ? JSON.parse(localStorage.getItem('ticks')) : []);
+  const [allTicks, setAllTicks] = useState(
+    localStorage.getItem("ticks")
+      ? JSON.parse(localStorage.getItem("ticks"))
+      : []
+  );
+  const [editingTick, setEditingTick] = useState(null)
+
+  const handleEdit = (tickIDToEdit) => {
+    const tickToEdit = removedTicks.find((tick) => tick.id === tickIDToEdit
+    );
+    if (tickIDToEdit)
+      setEditingTick(tickToEdit)
+  }
+  const handleSaveEdit = (updatedTick) => {
+    setRemovedTicks((prev) =>
+    prev.map((tick) => tick.id === updatedTick.id ? updatedTick : tick)
+  )
+  setEditingTick(null)
+  }
+
+  const handleCancelEdit = () => {
+    setEditingTick(null)
+    
+  }
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -106,6 +177,7 @@ export default function Ticklist() {
     });
   };
 
+ 
   // save ticks to local storage whenever allTicks changes
   useEffect(() => {
     localStorage.setItem("ticks", JSON.stringify(allTicks));
@@ -138,8 +210,20 @@ export default function Ticklist() {
           handleSubmit={handleSubmit}
         />
         <AddedClimbList allTicks={allTicks} handleDelete={handleDelete} />
-        <DeletedTicksGrid removedTicks={removedTicks}/>
+        <DeletedTicksGrid removedTicks={removedTicks} 
+        handleEdit={handleEdit}
+        />
+        {editingTick && (
+          <EditTick
+          tick={editingTick}
+          handleSave= {handleSaveEdit}
+          handleCancel={handleCancelEdit}
+          />
+        )}
+        
       </div>
     </main>
   );
 }
+
+
