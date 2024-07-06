@@ -137,11 +137,8 @@ export default function Ticklist() {
   );
   const [editingTick, setEditingTick] = useState(null)
 
-  const handleEdit = (tickIDToEdit) => {
-    const tickToEdit = removedTicks.find((tick) => tick.id === tickIDToEdit
-    );
-    if (tickIDToEdit)
-      setEditingTick(tickToEdit)
+  const handleEdit = (tick) => {
+    setEditingTick(tick)
   }
   const handleSaveEdit = (updatedTick) => {
     setRemovedTicks((prev) =>
@@ -199,6 +196,15 @@ export default function Ticklist() {
       setRemovedTicks(JSON.parse(storedRemovedTicks));
     }
   }, []);
+
+  // store edited ticks from local storage when component mount 
+  useEffect(() => {
+    const storedTicks = localStorage.getItem("ticks");
+    if (storedTicks) {
+      setAllTicks(JSON.parse(storedTicks));
+      }
+      }, [allTicks]);
+      
 
   return (
     <main className="min-h-screen p-8 bg-[#0a192f]">
