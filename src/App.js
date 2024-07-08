@@ -19,11 +19,6 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/ticklist" element={<Ticklist />} />
       </Routes>
-      {/* <Home />
-      <About />
-      <Skills />
-      <Work />
-      <Contact /> */}
     </div>
   );
 }
