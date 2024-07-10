@@ -59,8 +59,8 @@ function AddedClimbList({ allTicks, handleSent }) {
   );
 }
 
-// DeletedTicksGrid Component
-function DeletedTicksGrid({ removedTicks, handleEdit }) {
+// SentTicksGrid Component
+function SentTicksGrid({ removedTicks, handleEdit }) {
   return (
     <div className="grid grid-cols-1 gap-4 p-4">
       {removedTicks.map((tick) => (
@@ -81,8 +81,12 @@ function DeletedTicksGrid({ removedTicks, handleEdit }) {
   );
 }
 
+
+
+    
+
 // Edit Component
-const EditTick = ({ tick, handleSave, handleCancel }) => {
+const EditTick = ({ tick, handleSave, handleCancel, handleDelete }) => {
   const [title, setTitle] = useState(tick.title);
   const [description, setDescription] = useState(tick.description);
 
@@ -90,6 +94,10 @@ const EditTick = ({ tick, handleSave, handleCancel }) => {
     event.preventDefault();
     handleSave({ id: tick.id, title, description });
   };
+
+  const handleDeleteClick = ()=> {
+    handleDelete(tick.id)
+  }
   return (
     <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-md">
       <input
@@ -119,9 +127,18 @@ const EditTick = ({ tick, handleSave, handleCancel }) => {
       >
         Cancel
       </button>
+      <div className="py-3"></div>
+      <button onClick={handleDeleteClick} 
+      className="bg-red-500 text-white py-3 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ">
+        
+        Delete
+      </button>
     </form>
   );
 };
+
+
+              
 
 // Main TicklistApp Component
 export default function Ticklist() {
@@ -170,6 +187,12 @@ export default function Ticklist() {
     });
   };
 
+  const handleDelete = (tickIDToRemove) => {
+    setRemovedTicks((prev) => 
+    prev.filter((tick) => tick.id !== tickIDToRemove)
+  )
+  }
+
   // save ticks to local storage whenever allTicks changes
   useEffect(() => {
     localStorage.setItem("ticks", JSON.stringify(allTicks));
@@ -210,12 +233,13 @@ export default function Ticklist() {
           handleSubmit={handleSubmit}
         />
         <AddedClimbList allTicks={allTicks} handleSent={handleSent} />
-        <DeletedTicksGrid removedTicks={removedTicks} handleEdit={handleEdit} />
+        <SentTicksGrid removedTicks={removedTicks} handleEdit={handleEdit} />
         {editingTick && (
           <EditTick
             tick={editingTick}
             handleSave={handleSaveEdit}
             handleCancel={handleCancelEdit}
+            handleDelete={handleDelete}
           />
         )}
       </div>
