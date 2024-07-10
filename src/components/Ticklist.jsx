@@ -81,10 +81,6 @@ function SentTicksGrid({ removedTicks, handleEdit }) {
   );
 }
 
-
-
-    
-
 // Edit Component
 const EditTick = ({ tick, handleSave, handleCancel, handleDelete }) => {
   const [title, setTitle] = useState(tick.title);
@@ -95,9 +91,9 @@ const EditTick = ({ tick, handleSave, handleCancel, handleDelete }) => {
     handleSave({ id: tick.id, title, description });
   };
 
-  const handleDeleteClick = ()=> {
-    handleDelete(tick.id)
-  }
+  const handleDeleteClick = () => {
+    handleDelete(tick.id);
+  };
   return (
     <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-md">
       <input
@@ -128,22 +124,24 @@ const EditTick = ({ tick, handleSave, handleCancel, handleDelete }) => {
         Cancel
       </button>
       <div className="py-3"></div>
-      <button onClick={handleDeleteClick} 
-      className="bg-red-500 text-white py-3 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ">
-        
+      <button
+        onClick={handleDeleteClick}
+        className="bg-red-500 text-white py-3 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 "
+      >
         Delete
       </button>
     </form>
   );
 };
 
-
-              
-
 // Main TicklistApp Component
 export default function Ticklist() {
   const [newClimb, setNewClimb] = useState({});
-  const [removedTicks, setRemovedTicks] = useState([]);
+  const [removedTicks, setRemovedTicks] = useState(
+    localStorage.getItem("removedTicks")
+      ? JSON.parse(localStorage.getItem("removedTicks"))
+      : []
+  );
   const [allTicks, setAllTicks] = useState(
     localStorage.getItem("ticks")
       ? JSON.parse(localStorage.getItem("ticks"))
@@ -188,10 +186,10 @@ export default function Ticklist() {
   };
 
   const handleDelete = (tickIDToRemove) => {
-    setRemovedTicks((prev) => 
-    prev.filter((tick) => tick.id !== tickIDToRemove)
-  )
-  }
+    setRemovedTicks((prev) =>
+      prev.filter((tick) => tick.id !== tickIDToRemove)
+    );
+  };
 
   // save ticks to local storage whenever allTicks changes
   useEffect(() => {

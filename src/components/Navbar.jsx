@@ -74,7 +74,7 @@ const Navbar = () => {
           <a href="/work">Work</a>
         </li>
         <li className="py-6 text-4xl">
-          <a href="/contact">Contact</a>
+          <a href="/ticklist">Ticklist</a>
         </li>
       </ul>
 
