@@ -36,7 +36,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
 }
 
 // AddedClimbList Component
-function AddedClimbList({ allTicks, handleDelete }) {
+function AddedClimbList({ allTicks, handleSent }) {
   return (
     <ul className="space-y-4">
       {allTicks.map(({ title, description = "", id }) => (
@@ -44,7 +44,7 @@ function AddedClimbList({ allTicks, handleDelete }) {
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-semibold ">{title}</h2>
             <button
-              onClick={() => handleDelete(id)}
+              onClick={() => handleSent(id)}
               className="bg-red-500 flex shadow-[#040c16] shadow-sm hover:scale-110 duration-500 text-white py-3 px-6 rounded-full "
             >
               Sent it!
@@ -160,7 +160,7 @@ export default function Ticklist() {
     setNewClimb({});
   };
 
-  const handleDelete = (tickIDToRemove) => {
+  const handleSent = (tickIDToRemove) => {
     setAllTicks((prev) => {
       const tickToRemove = prev.find((tick) => tick.id === tickIDToRemove);
       if (tickToRemove) {
@@ -209,7 +209,7 @@ export default function Ticklist() {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
-        <AddedClimbList allTicks={allTicks} handleDelete={handleDelete} />
+        <AddedClimbList allTicks={allTicks} handleSent={handleSent} />
         <DeletedTicksGrid removedTicks={removedTicks} handleEdit={handleEdit} />
         {editingTick && (
           <EditTick
