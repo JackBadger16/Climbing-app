@@ -10,19 +10,19 @@ import { HiOutlineMail } from "react-icons/hi";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import Logo from "../assets/JB.png";
 
-
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
 
   return (
-    <div className="fixed w-full h-[80px] flex justify-between items-center px-4  text-black"
-    style={
-      {
+    <div
+      className="fixed w-full h-[400px] flex justify-between items-top px-4  text-black text-2xl z-0"
+      style={{
         backgroundImage: `url('/navbarbackground.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-    }}>
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div>
         <img
           className="rounded"
@@ -34,24 +34,36 @@ const Navbar = () => {
 
       {/* menu */}
 
-      <ul className="hidden md:flex">
+      <ul className="hidden md:flex ">
         <li>
-          <a href="/">Home</a>
+          <a className="hover:font-bold" href="/">
+            Home
+          </a>
         </li>
         <li>
-          <a href="/about">About</a>
+          <a className="hover:font-bold" href="/ticklist">
+            Ticklist
+          </a>
         </li>
         <li>
-          <a href="/skills">Skills</a>
+          <a className="hover:font-bold" href="/skills">
+            Goals
+          </a>
         </li>
         <li>
-          <a href="/work">Work</a>
+          <a className="hover:font-bold" href="/work">
+            Work
+          </a>
         </li>
         <li>
-          <a href="/contact">Contact</a>
+          <a className="hover:font-bold" href="/about">
+            About
+          </a>
         </li>
         <li>
-          <a href="/ticklist">Ticklist</a>
+          <a className="hover:font-bold " href="/contact">
+            Contact
+          </a>
         </li>
       </ul>
 

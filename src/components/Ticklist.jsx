@@ -12,7 +12,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
         placeholder="New Climb"
         value={newTick.title || ""}
         onChange={handleChange}
-        className="border border-gray-300 p-2 mb-2 w-full rounded"
+        className="focus:outline-none focus:bg-blue-50  outline outline-gray-300 p-2 mb-2 w-full rounded"
       />
       {!newTick.title ? null : (
         <>
@@ -21,11 +21,11 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
             placeholder="Details..."
             value={newTick.description || ""}
             onChange={handleChange}
-            className="border border-gray-300 p-2 mb-2 w-full rounded"
+            className="focus:outline-gray-300 focus:bg-blue-50  outline outline-gray-300 p-2 mb-2 w-full rounded"
           />
           <button
             type="submit"
-            className="bg-blue-500 text-white py-3 px-6 flex rounded-full hadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+            className="bg-gradient-to-r from-slate-500   text-white py-3 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500"
           >
             Add Climb
           </button>
@@ -45,7 +45,7 @@ function AddedClimbList({ allTicks, handleSent }) {
             <h2 className="text-lg font-semibold ">{title}</h2>
             <button
               onClick={() => handleSent(id)}
-              className="bg-red-500 flex shadow-[#040c16] shadow-sm hover:scale-110 duration-500 text-white py-3 px-6 rounded-full "
+              className="flex shadow-[#040c16] shadow-sm hover:scale-110 duration-500 text-black py-3 px-6 rounded-full "
             >
               Sent it!
             </button>
@@ -69,12 +69,14 @@ function SentTicksGrid({ removedTicks, handleEdit }) {
           {tick.description?.length > 0 && (
             <p className="text-gray-700">{tick.description}</p>
           )}
-          <button
+          <div className="flex justify-end">
+            <button
             onClick={() => handleEdit(tick)}
-            className="bg-blue-500 text-white py-3 px-6 flex rounded-full hadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+            className="bg-blue-500  text-white py-3 px-6 flex rounded-full hadow-[#040c16] shadow-sm hover:scale-110 duration-500"
           >
             Edit
           </button>
+          </div>
         </div>
       ))}
     </div>
@@ -96,6 +98,7 @@ const EditTick = ({ tick, handleSave, handleCancel, handleDelete }) => {
   };
   return (
     <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-md">
+      <div className="flex justify-end">
       <input
         name="title"
         placeholder="Edit Climb"
@@ -112,24 +115,25 @@ const EditTick = ({ tick, handleSave, handleCancel, handleDelete }) => {
       />
       <button
         type="submit"
-        className="bg-red-500 text-white py-3 px-6 flex rounded-full hadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+        className="bg-green-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
       >
         Save
       </button>
-      <div className="py-3"></div>
+     
       <button
         onClick={handleCancel}
-        className="bg-blue-500 text-white py-3 px-6 flex rounded-full hadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+        className="bg-blue-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
       >
         Cancel
       </button>
-      <div className="py-3"></div>
+      
       <button
         onClick={handleDeleteClick}
-        className="bg-red-500 text-white py-3 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 "
+        className="bg-red-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2 "
       >
         Delete
       </button>
+      </div>
     </form>
   );
 };
@@ -223,6 +227,7 @@ export default function Ticklist() {
 
   return (
     <main className="min-h-screen p-8 bg-[#0a192f]">
+      <div className="py-40 "></div>
       <div name="ticklist" className="max-w-3xl mx-auto ">
         <h1 className="text-2xl font-bold mb-6">Ticklist</h1>
         <NewTick
