@@ -12,7 +12,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
         placeholder="New Climb"
         value={newTick.title || ""}
         onChange={handleChange}
-        className="focus:outline-none focus:bg-blue-50  outline outline-gray-300 p-2 mb-2 w-full rounded"
+        className="rounded-md border-2 outline-none focus:border-cyan-400 focus:bg-slate-50 p-2 mb-2 w-full"
       />
       {!newTick.title ? null : (
         <>
@@ -21,7 +21,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
             placeholder="Details..."
             value={newTick.description || ""}
             onChange={handleChange}
-            className="focus:outline-gray-300 focus:bg-blue-50  outline outline-gray-300 p-2 mb-2 w-full rounded"
+            className="rounded-md border-2 outline-none focus:border-cyan-400 focus:bg-slate-50 p-2 mb-2 w-full"
           />
           <button
             type="submit"
@@ -71,11 +71,11 @@ function SentTicksGrid({ removedTicks, handleEdit }) {
           )}
           <div className="flex justify-end">
             <button
-            onClick={() => handleEdit(tick)}
-            className="bg-blue-500  text-white py-3 px-6 flex rounded-full hadow-[#040c16] shadow-sm hover:scale-110 duration-500"
-          >
-            Edit
-          </button>
+              onClick={() => handleEdit(tick)}
+              className="bg-blue-500  text-white py-3 px-6 flex rounded-full hadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+            >
+              Edit
+            </button>
           </div>
         </div>
       ))}
@@ -99,40 +99,40 @@ const EditTick = ({ tick, handleSave, handleCancel, handleDelete }) => {
   return (
     <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-md">
       <div className="flex justify-end">
-      <input
-        name="title"
-        placeholder="Edit Climb"
-        value={title}
-        onChange={(e) => setTitle(e.target)}
-        className="border border-gray-300 p-2 mb-2 w-full rounded"
-      />
-      <textarea
-        name="description"
-        placeholder="Edit Details..."
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className="border border-gray-300 p-2 mb-2 w-full rounded"
-      />
-      <button
-        type="submit"
-        className="bg-green-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
-      >
-        Save
-      </button>
-     
-      <button
-        onClick={handleCancel}
-        className="bg-blue-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
-      >
-        Cancel
-      </button>
-      
-      <button
-        onClick={handleDeleteClick}
-        className="bg-red-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2 "
-      >
-        Delete
-      </button>
+        <input
+          name="title"
+          placeholder="Edit Climb"
+          value={title}
+          onChange={(e) => setTitle(e.target)}
+          className="border border-gray-300 p-2 mb-2 w-full rounded"
+        />
+        <textarea
+          name="description"
+          placeholder="Edit Details..."
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="border border-gray-300 p-2 mb-2 w-full rounded"
+        />
+        <button
+          type="submit"
+          className="bg-green-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
+        >
+          Save
+        </button>
+
+        <button
+          onClick={handleCancel}
+          className="bg-blue-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
+        >
+          Cancel
+        </button>
+
+        <button
+          onClick={handleDeleteClick}
+          className="bg-red-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2 "
+        >
+          Delete
+        </button>
       </div>
     </form>
   );

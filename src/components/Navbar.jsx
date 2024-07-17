@@ -51,8 +51,8 @@ const Navbar = () => {
           </a>
         </li>
         <li>
-          <a className="hover:font-bold" href="/work">
-            Work
+          <a className="hover:font-bold" href="/login">
+            Login
           </a>
         </li>
         <li>
