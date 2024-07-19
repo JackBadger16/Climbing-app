@@ -45,7 +45,7 @@ function AddedClimbList({ allTicks, handleSent }) {
             <h2 className="text-lg font-semibold ">{title}</h2>
             <button
               onClick={() => handleSent(id)}
-              className="flex shadow-[#040c16] shadow-sm hover:scale-110 duration-500 text-black py-3 px-6 rounded-full "
+              className="flex shadow-[#040c16] shadow-sm hover:scale-110 duration-500 text-black border-2 border-black py-3 px-6 rounded-full "
             >
               Sent it!
             </button>
@@ -72,7 +72,7 @@ function SentTicksGrid({ removedTicks, handleEdit }) {
           <div className="flex justify-end">
             <button
               onClick={() => handleEdit(tick)}
-              className="bg-blue-500  text-white py-3 px-6 flex rounded-full hadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+              className="border-black border-2  text-black py-3 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500"
             >
               Edit
             </button>
@@ -104,32 +104,33 @@ const EditTick = ({ tick, handleSave, handleCancel, handleDelete }) => {
           placeholder="Edit Climb"
           value={title}
           onChange={(e) => setTitle(e.target)}
-          className="border border-gray-300 p-2 mb-2 w-full rounded"
+          className="rounded-md border-2 outline-none focus:border-cyan-400 p-2 mb-2 w-full"
         />
+        <div className="px-2"></div>
         <textarea
           name="description"
           placeholder="Edit Details..."
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="border border-gray-300 p-2 mb-2 w-full rounded"
+          className="rounded-md border-2 outline-none focus:border-cyan-400 p-2 mb-2 w-full"
         />
         <button
           type="submit"
-          className="bg-green-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
+          className="bg-green-400 border-2 border-black text-black py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
         >
           Save
         </button>
 
         <button
           onClick={handleCancel}
-          className="bg-blue-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
+          className="bg-blue-400 text-black border-2 border-black py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
         >
           Cancel
         </button>
 
         <button
           onClick={handleDeleteClick}
-          className="bg-red-500 text-white py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2 "
+          className="bg-red-400 text-black border-2 border-black py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2 "
         >
           Delete
         </button>

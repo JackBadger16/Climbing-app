@@ -89,7 +89,10 @@ const Navbar = () => {
           <a href="/skills">Skills</a>
         </li>
         <li className="py-6 text-4xl">
-          <a href="/work">Work</a>
+          <a href="/skills">Goals</a>
+        </li>
+        <li className="py-6 text-4xl">
+          <a href="/login">Login</a>
         </li>
         <li className="py-6 text-4xl">
           <a href="/ticklist">Ticklist</a>
