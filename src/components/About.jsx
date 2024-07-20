@@ -14,13 +14,11 @@ const About = () => {
         </div>
         <div className="max-w-[1000px] w-full grid md:grid-cols-2 gap-8 px-4">
           <div className="md:text-right text-4xl font-bold">
-            <p>Hi, I'm Jack nice to meet you please take a look around.</p>
+            <p>Climbing app</p>
           </div>
           <div>
             <p>
-              I'm passionate about changing my career from a Physiotherapist to
-              a Front-End Developer. I would like to create bespoke Fronte-End
-              UI to meet the demands of varrying clients and businesses.
+              Info
             </p>
           </div>
         </div>

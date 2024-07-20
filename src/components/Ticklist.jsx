@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addTick, removeTick, loadTicks } from "./actions";
+
 
 
 
@@ -234,7 +233,7 @@ export default function Ticklist() {
   }, [allTicks]);
 
   return (
-    <main className="min-h-screen p-8 bg-[#0a192f]">
+    <main className="min-h-screen p-8 bg-[#0a192f] ">
       <div className="py-40 "></div>
       <div name="ticklist" className="max-w-3xl mx-auto ">
         <h1 className="text-2xl font-bold mb-6 text-white ">Ticklist</h1>
