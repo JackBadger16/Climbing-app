@@ -21,8 +21,9 @@ const Home = () => {
           obey the Beta
           end the Send
           Send quest
-          Wrecked'
-          
+          Wrecked
+          D-Send
+          climb Harder'          
         </h2>
         <p className="text-[#fd0000] py-4 max-w-[700px] font-extrabold z-10">
           This is a space where climbers can search for routes,crags and areas,

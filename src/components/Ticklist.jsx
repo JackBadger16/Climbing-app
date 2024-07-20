@@ -29,7 +29,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
           />
           <button
             type="submit"
-            className="bg-gradient-to-r from-slate-500   text-white py-3 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+            className="bg-gradient-to-r from-slate-500  text-white py-3 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500"
           >
             Add Climb
           </button>
@@ -237,12 +237,11 @@ export default function Ticklist() {
     <main className="min-h-screen p-8 bg-[#0a192f]">
       <div className="py-40 "></div>
       <div name="ticklist" className="max-w-3xl mx-auto ">
-        <h1 className="text-2xl font-bold mb-6">Ticklist</h1>
-        <NewTick onSubmit={handleSubmit}
-
-          // newTick={newClimb}
-          // handleChange={handleChange}
-          // handleSubmit={handleSubmit}
+        <h1 className="text-2xl font-bold mb-6 text-white ">Ticklist</h1>
+        <NewTick
+          newTick={newClimb}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
         />
         <AddedClimbList allTicks={allTicks} handleSent={handleSent} />
         <SentTicksGrid removedTicks={removedTicks} handleEdit={handleEdit} />

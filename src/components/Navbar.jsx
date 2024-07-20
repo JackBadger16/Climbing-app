@@ -34,7 +34,7 @@ const Navbar = () => {
 
       {/* menu */}
 
-      <ul className="hidden md:flex ">
+      <ul className="hidden md:flex py-4">
         <li>
           <a className="hover:font-bold" href="/">
             Home
