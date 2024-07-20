@@ -16,11 +16,11 @@ const Navbar = () => {
 
   return (
     <div
-      className="fixed w-full h-[400px] flex justify-between items-top px-4  text-black text-2xl z-0"
+      className="fixed w-full h-[300px] flex justify-between items-top px-4  text-black text-2xl z-0"
       style={{
         backgroundImage: `url('/navbarbackground.jpg')`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "40% 35%",
       }}
     >
       <div>
