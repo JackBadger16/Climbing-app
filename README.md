@@ -73,10 +73,22 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 Developer Setup:
 
+1. Install the AWS CLI (Only once when setting up machine)
 ```
 	curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 	unzip awscliv2.zip
 	sudo ./aws/install
 ```
 
-Upload:
+2. Add secrets into your .bashrc
+``` 
+	export AWS_ACCESS_KEY_ID=<Fetch-from-matt>
+	export AWS_SECRET_ACCESS_KEY=<fetch-from-matt>
+	export AWS_DEFAULT_REGION=eu-west-2
+```
+3. Upload
+```
+	npm run build
+	aws s3 cp build s3://climbingwithjack --recursive
+```
+
