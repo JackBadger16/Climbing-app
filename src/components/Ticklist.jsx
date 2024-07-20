@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addTick, removeTick, loadTicks } from "./actions";
+
+
 
 // NewTick Component
 function NewTick({ newTick, handleChange, handleSubmit }) {
@@ -34,6 +38,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
     </form>
   );
 }
+
 
 // AddedClimbList Component
 function AddedClimbList({ allTicks, handleSent }) {
@@ -190,6 +195,7 @@ export default function Ticklist() {
     });
   };
 
+
   const handleDelete = (tickIDToRemove) => {
     setRemovedTicks((prev) =>
       prev.filter((tick) => tick.id !== tickIDToRemove)
@@ -218,6 +224,7 @@ export default function Ticklist() {
     }
   }, []);
 
+
   // store edited ticks from local storage when component mount
   useEffect(() => {
     const storedTicks = localStorage.getItem("ticks");
@@ -231,10 +238,11 @@ export default function Ticklist() {
       <div className="py-40 "></div>
       <div name="ticklist" className="max-w-3xl mx-auto ">
         <h1 className="text-2xl font-bold mb-6">Ticklist</h1>
-        <NewTick
-          newTick={newClimb}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
+        <NewTick onSubmit={handleSubmit}
+
+          // newTick={newClimb}
+          // handleChange={handleChange}
+          // handleSubmit={handleSubmit}
         />
         <AddedClimbList allTicks={allTicks} handleSent={handleSent} />
         <SentTicksGrid removedTicks={removedTicks} handleEdit={handleEdit} />
