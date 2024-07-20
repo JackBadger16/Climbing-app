@@ -13,17 +13,9 @@ const Home = () => {
           
         </h1> */}
         <h2 className="text-4xl text-white md:text-7xl font-bold z-10">
-          Welcome to 'Send friend
-          chalk up
-          breaking Beta
-          ate that Beta
-          fatal Beta
-          obey the Beta
-          end the Send
-          Send quest
-          Wrecked
-          D-Send
-          climb Harder'          
+          Welcome to 'Send friend matt's test chalk up breaking Beta ate that
+          Beta fatal Beta obey the Beta end the Send Send quest Wrecked D-Send
+          climb Harder'
         </h2>
         <p className="text-[#fd0000] py-4 max-w-[700px] font-extrabold z-10">
           This is a space where climbers can search for routes,crags and areas,
