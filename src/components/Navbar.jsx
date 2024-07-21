@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import {
   FaBars,
   FaTimes,
-  FaGithub,
-  FaLinkedin,
-  // FaFacebook,
 } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import Logo from "../assets/JB.png";
+
+
+
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -68,7 +68,7 @@ const Navbar = () => {
       </ul>
 
       {/* Hambuger */}
-      <div onClick={handleClick} className="md:hidden z-10">
+      <div onClick={handleClick} className="md:hidden  text-white z-50 ">
         {!nav ? <FaBars /> : <FaTimes />}
       </div>
       {/* Mobile Menu */}
@@ -76,7 +76,7 @@ const Navbar = () => {
         className={
           !nav
             ? "hidden"
-            : "absolute top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center"
+            : "absolute top-0 left-0 w-full h-screen bg-[#0a192f] text-white flex flex-col justify-center items-center z-45"
         }
       >
         <li className="py-6 text-4xl">
@@ -102,22 +102,6 @@ const Navbar = () => {
       {/*  Social icons*/}
       <div className=" fixed flex-col top-[35%] left-0">
         <ul>
-          <li className="w-[80px] md:w-[142px] lg:w-[160px] h-[40px] lg:h-[60px]flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-blue-600">
-            <a
-              className="mr-[-10px] lg:mr-0 duration-300 flex justify-between items-center w-full text-gray-300"
-              href="/"
-            >
-              Linkedin <FaLinkedin size={30} />
-            </a>
-          </li>
-          <li className="w-[80px] md:w-[142px] lg:w-[160px] h-[40px] lg:h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#333333]">
-            <a
-              className="mr-[-10px] lg:mr-0 duration-300 flex justify-between items-center w-full text-gray-300"
-              href="/"
-            >
-              Github <FaGithub size={30} />
-            </a>
-          </li>
           <li className="w-[80px] md:w-[142px] lg:w-[160px] h-[40px] lg:h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#6fb2b0]">
             <a
               className="mr-[-10px] lg:mr-0 duration-300 flex justify-between items-center w-full text-gray-300"
@@ -126,14 +110,7 @@ const Navbar = () => {
               Email <HiOutlineMail size={30} />
             </a>
           </li>
-          <li className="w-[80px] md:w-[142px] lg:w-[160px] h-[40px] lg:h-[60px] flex justify-between items-center ml-[-100px] hover:ml-[-10px] duration-300 bg-[#565f69]">
-            <z
-              className="mr-[-10px] lg:mr-0 duration-300 flex justify-between items-center w-full text-gray-300"
-              href="/"
-            >
-              Resume <BsFillPersonLinesFill size={30} />
-            </z>
-          </li>
+         
         </ul>
       </div>
     </div>
