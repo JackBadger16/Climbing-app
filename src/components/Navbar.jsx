@@ -59,7 +59,7 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a className="hover:font-bold" href="/skills">
+            <a className="hover:font-bold" href="/goals">
               Goals
             </a>
           </li>
@@ -96,23 +96,23 @@ const Navbar = () => {
               : "absolute top-0 left-0 w-full h-screen bg-[#0a192f] text-white flex flex-col justify-center items-center z-45"
           }
         >
-          <li className="py-6 text-4xl">
+          <li className="py-6 text-4xl hover:font-bold ">
             <a href="/">Home</a>
           </li>
-          <li className="py-6 text-4xl">
+          <li className="py-6 text-4xl hover:font-bold ">
             <a href="/ticklist">Ticklist</a>
           </li>
-          <li className="py-6 text-4xl">
-            <a href="/skills">Skills</a>
+          <li className="py-6 text-4xl hover:font-bold ">
+            <a href="/goals">Goals</a>
           </li>
-          <li className="py-6 text-4xl">
-            <a href="/skills">Goals</a>
-          </li>
-          <li className="py-6 text-4xl">
+          <li className="py-6 text-4xl hover:font-bold ">
             <a href="/login">Login</a>
           </li>
-          <li className="py-6 text-4xl">
-            <a href="/about">About</a>
+          <li className="py-6 text-4xl hover:font-bold ">
+            <a href="/About">About</a>
+          </li>
+          <li className="py-6 text-4xl hover:font-bold ">
+            <a href="/contact">Contact</a>
           </li>
         </ul>
       </div>

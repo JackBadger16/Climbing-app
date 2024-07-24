@@ -49,7 +49,7 @@ function AddedClimbList({ allTicks, handleSent }) {
             <h2 className="text-lg font-semibold ">{title}</h2>
             <button
               onClick={() => handleSent(id)}
-              className="flex shadow-[#040c16] shadow-sm hover:scale-110 duration-500 text-black border-2 border-black py-3 px-6 rounded-full "
+              className="flex shadow-[#040c16] shadow-sm hover:scale-110 duration-500 text-black border-2 border-black py-3 px-4 rounded-full "
             >
               Sent it!
             </button>
@@ -102,44 +102,44 @@ const EditTick = ({ tick, handleSave, handleCancel, handleDelete }) => {
   };
   return (
     <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-md">
-      <div className="flex justify-end">
-        <input
-          name="title"
-          placeholder="Edit Climb"
-          value={title}
-          onChange={(e) => setTitle(e.target)}
-          className="rounded-md border-2 outline-none focus:border-cyan-400 p-2 mb-2 w-full"
-        />
-        <div className="px-2"></div>
-        <textarea
-          name="description"
-          placeholder="Edit Details..."
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="rounded-md border-2 outline-none focus:border-cyan-400 p-2 mb-2 w-full"
-        />
-        <button
-          type="submit"
-          className="bg-green-400 border-2 border-black text-black py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
-        >
-          Save
-        </button>
+  <div className="flex flex-col md:flex-row">
+    <input
+      name="title"
+      placeholder="Edit Climb"
+      value={title}
+      onChange={(e) => setTitle(e.target.value)}
+      className="rounded-md border-2 outline-none focus:border-cyan-400 p-2 mb-2 w-full mr-2"
+    />
+    <textarea
+      name="description"
+      placeholder="Edit Details..."
+      value={description}
+      onChange={(e) => setDescription(e.target.value)}
+      className="rounded-md border-2 outline-none focus:border-cyan-400 p-2 mb-2 w-full"
+    />
+    <div className="flex justify-end w-full md:w-auto">
+      <button
+        type="submit"
+        className="mb-2 md:ml-2 mr-2 bg-green-400 border-2 border-black text-black py-3 px-4 rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+      >
+        Save
+      </button>
+      <button
+        onClick={handleCancel}
+        className="mb-2 md:ml-2 mr-2 bg-blue-400 text-black border-2 border-black py-3 px-4 rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+      >
+        Cancel
+      </button>
+      <button
+        onClick={handleDeleteClick}
+        className="mb-2 md:ml-2 bg-red-400 text-black border-2 border-black py-3 px-4 rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</form>
 
-        <button
-          onClick={handleCancel}
-          className="bg-blue-400 text-black border-2 border-black py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2"
-        >
-          Cancel
-        </button>
-
-        <button
-          onClick={handleDeleteClick}
-          className="bg-red-400 text-black border-2 border-black py-6 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 ml-2 "
-        >
-          Delete
-        </button>
-      </div>
-    </form>
   );
 };
 
@@ -236,7 +236,7 @@ export default function Ticklist() {
     <main className="min-h-screen p-8 bg-[#0a192f] ">
       <div className="py-40 "></div>
       <div name="ticklist" className="max-w-3xl mx-auto ">
-        <h1 className="text-2xl font-bold mb-6 text-white ">Ticklist</h1>
+        <h1 className="text-4xl font-bold inline border-b-4 text-gray-300  border-pink-600 ">Ticklist</h1>
         <NewTick
           newTick={newClimb}
           handleChange={handleChange}

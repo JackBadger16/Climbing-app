@@ -16,30 +16,29 @@ const Contact = () => {
             Contact
           </p>
           <p className="text-gray-300 py-4">
-            // Submit the form below or shoot me an email -
-            jackbadger16@gmail.com
+            Submit the form below or shoot me an email - jackbadger16@gmail.com
           </p>
         </div>
         <input
-          className=" rounded bg-[#ccd6f6] p-2 "
+          className=" rounded-md border-2 outline-none focus:border-cyan-400  bg-[#ccd6f6] p-2 "
           type="text"
           placeholder="Name"
           name="name "
         />
         <input
-          className="rounded my-4 p-2 bg-[#ccd6f6] "
+          className="rounded-md my-4 p-2 border-2 outline-none focus:border-cyan-400 bg-[#ccd6f6] "
           type="email"
           placeholder="Email"
           name="email"
         />
         <textarea
-          className="rounded bg-[#ccd6f6] p-2 "
+          className="rounded-md bg-[#ccd6f6] p-2 border-2 outline-none focus:border-cyan-400 "
           name="message"
           rows="10"
           placeholder="Message"
         ></textarea>
-        <button className=" rounded text-white border-2 hover:bg-pink-600 hover:border-pink-600 px-4 py-3 my-8 mx-auto flex items-center ">
-          Let's Collaborate
+        <button className=" rounded-full text-white border-2 hover:bg-pink-600 hover:border-pink-600 px-4 py-3 my-8 mx-auto flex items-center ">
+          Send
         </button>
       </form>
     </div>
