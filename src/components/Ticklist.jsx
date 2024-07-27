@@ -234,8 +234,8 @@ export default function Ticklist() {
 
   return (
     <main className="min-h-screen p-8 bg-[#0a192f] ">
-      <div className="py-40 "></div>
-      <div name="ticklist" className="max-w-3xl mx-auto ">
+      
+      <div name="ticklist" className=" min-h-screen max-w-3xl mx-auto pt-[300px] pb-40">
         <h1 className="text-4xl font-bold inline border-b-4 text-gray-300  border-pink-600 ">Ticklist</h1>
         <NewTick
           newTick={newClimb}
