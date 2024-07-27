@@ -2,7 +2,6 @@ import React from "react";
 
 const Login = () => {
   return (
-    
     <section className="min-h-screen flex items-center justify-center bg-[#0a192f] pt-40 pb-6">
       <div className="flex shadow-2xl mt-40">
         <div className="flex flex-col items-center justify-center p-20 gap-8 bg-white rounded-2xl ">
@@ -30,7 +29,10 @@ const Login = () => {
             Login
           </button>
           <p className="font-semibold">
-            Don't have an account? <a href="register" className="text-blue-400 hover:underline">Register</a>
+            Don't have an account?{" "}
+            <a href="register" className="text-blue-400 hover:underline">
+              Register
+            </a>
           </p>
         </div>
       </div>
