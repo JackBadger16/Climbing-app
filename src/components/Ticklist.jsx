@@ -156,6 +156,9 @@ export default function Ticklist() {
       ? JSON.parse(localStorage.getItem("ticks"))
       : []
   );
+  //  removed setIsAuthenticated as it wasn't being used but still works without it. 
+  const [isAuthenticated] = useState(false);
+  
   const [editingTick, setEditingTick] = useState(null);
 
   const handleEdit = (tick) => {
@@ -179,6 +182,10 @@ export default function Ticklist() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!isAuthenticated){
+      alert("Please login to add a new tick")
+      return;
+    }
     if (!newClimb.title) return;
     setAllTicks((prev) => [newClimb, ...prev]);
     setNewClimb({});

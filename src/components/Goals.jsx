@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-const Goals = () => {
+const Goals = ({ isAuthenticated }) => {
+
+  
   const [goals, setGoals] = useState(
     localStorage.getItem('goals')
       ? JSON.parse(localStorage.getItem('goals'))
@@ -23,6 +25,10 @@ const Goals = () => {
 
   const handleAddGoal = (event) => {
     event.preventDefault();
+    if (!isAuthenticated) {
+      alert("Please login to add goals");
+      return;
+    }
     if (newGoal.trim() !== "") {
       const newGoalObject = {
         id: goals.length + 1,
@@ -60,9 +66,11 @@ const Goals = () => {
           placeholder="Add a new goal"
           className="w-full px-4 py-2 border border-gray-300 rounded"
         />
+        {/* in button added conditional save feature ? it works as expected */}
         <button
           type="submit"
           className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
+          onClick={handleAddGoal}
         >
           Add Goal
         </button>

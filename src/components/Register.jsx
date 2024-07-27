@@ -2,28 +2,30 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberPassword, setRememberPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const history = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip",
         {
           username,
           password,
         }
       );
-      const { token } = response.data;
-      localStorage.setItem("token", token);
-      navigate("/dashboard", { replace: true }); // Redirect to the dashboard
+      history.push("/login"); // Redirect to login page after successful registration
     } catch (err) {
-      setError("Invalid username or password");
+      setError("Error registering user");
     }
   };
 
@@ -34,7 +36,7 @@ const Login = () => {
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center p-20 gap-8 bg-white rounded-2xl"
         >
-          <h1 className="text-5xl font-bold">Welcome</h1>
+          <h1 className="text-5xl font-bold">Register</h1>
           {error && <p className="text-red-500">{error}</p>}
           <div className="flex flex-col text-2xl text-left gap-1">
             <label htmlFor="username">Username</label>
@@ -55,29 +57,27 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               className="rounded-md p-1 border-2 outline-none focus:border-cyan-400 focus:bg-slate-50"
             />
-            <div className="flex items-center mt-2">
-              <input
-                type="checkbox"
-                id="remember-password"
-                checked={rememberPassword}
-                onChange={(e) => setRememberPassword(e.target.checked)}
-                className="mr-2"
-              />
-              <label htmlFor="remember-password" className="text-base">
-                Remember Password
-              </label>
-            </div>
+          </div>
+          <div className="flex flex-col text-2xl text-left gap-1">
+            <label htmlFor="confirm-password">Confirm Password</label>
+            <input
+              type="password"
+              id="confirm-password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="rounded-md p-1 border-2 outline-none focus:border-cyan-400 focus:bg-slate-50"
+            />
           </div>
           <button
             type="submit"
             className="px-10 py-2 text-2xl rounded-md bg-black text-white"
           >
-            Login
+            Register
           </button>
           <p className="font-semibold">
-            Don't have an account?{" "}
-            <a href="/register" className="text-blue-400 hover:underline">
-              Register
+            Already have an account?{" "}
+            <a href="/login" className="text-blue-400 hover:underline">
+              Login
             </a>
           </p>
         </form>
@@ -86,4 +86,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
