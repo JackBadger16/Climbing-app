@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
 
 const Goals = ({ isAuthenticated }) => {
-
-  
   const [goals, setGoals] = useState(
-    localStorage.getItem('goals')
-      ? JSON.parse(localStorage.getItem('goals'))
+    localStorage.getItem("goals")
+      ? JSON.parse(localStorage.getItem("goals"))
       : []
   );
 
   const [newGoal, setNewGoal] = useState(
-    localStorage.getItem('newGoal')
-      ? JSON.parse(localStorage.getItem('newGoal'))
+    localStorage.getItem("newGoal")
+      ? JSON.parse(localStorage.getItem("newGoal"))
       : []
   );
 
   useEffect(() => {
-    localStorage.setItem('goals', JSON.stringify(goals));
+    localStorage.setItem("goals", JSON.stringify(goals));
   }, [goals]);
 
   useEffect(() => {
-    localStorage.setItem('newGoal', JSON.stringify(newGoal));
+    localStorage.setItem("newGoal", JSON.stringify(newGoal));
   }, [newGoal]);
 
   const handleAddGoal = (event) => {
@@ -56,44 +54,51 @@ const Goals = ({ isAuthenticated }) => {
   };
 
   return (
-    <div className="pt-[300px]">
-      <h1 className="text-3xl font-bold mb-4">Goal List</h1>
-      <form onSubmit={handleAddGoal} className="flex mb-4">
-        <input
-          type="text"
-          value={newGoal}
-          onChange={(event) => setNewGoal(event.target.value)}
-          placeholder="Add a new goal"
-          className="w-full px-4 py-2 border border-gray-300 rounded"
-        />
-        {/* in button added conditional save feature ? it works as expected */}
-        <button
-          type="submit"
-          className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handleAddGoal}
+    <div className="pt-[300px] w-full h-screen bg-[#0a192f] pb-40 ">
+      <div className="max-w-[1000px] mx-auto px-8 flex flex-col justify-center h-full w-full ">
+        <h1 className="bg-[#0a192f] text-4xl font-bold inline border-b-4 max-w-[400px] text-gray-300  border-pink-600 ">
+          Goal List
+        </h1>
+        <form
+          onSubmit={handleAddGoal}
+          className="flex mb-4 justify-between max-w-3xl pt-4"
         >
-          Add Goal
+          <input
+            type="text"
+            value={newGoal}
+            onChange={(event) => setNewGoal(event.target.value)}
+            placeholder="Add a new goal"
+            className="rounded-md border-2 outline-none focus:border-cyan-400 focus:bg-slate-50 p-2 mb-2 flex-1 mr-4"
+          />
+          {/* in button added conditional save feature ? it works as expected */}
+          <button
+            type="submit"
+            className="bg-gradient-to-r from-slate-500  text-white py-3 px-8 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+            onClick={handleAddGoal}
+          >
+            Add Goal
+          </button>
+        </form>
+        <ul className="list-none mb-0 ">
+          {goals.map((goal) => (
+            <li key={goal.id} className="flex items-center mb-2">
+              <input
+                type="checkbox"
+                checked={goal.completed}
+                onChange={() => handleToggleCompleted(goal.id)}
+                className="mr-2"
+              />
+              <span className="text-lg">{goal.title}</span>
+            </li>
+          ))}
+        </ul>
+        <button
+          onClick={handleDeleteCompleted}
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full w-full"
+        >
+          Delete Completed Goals
         </button>
-      </form>
-      <ul className="list-none mb-0">
-        {goals.map((goal) => (
-          <li key={goal.id} className="flex items-center mb-2">
-            <input
-              type="checkbox"
-              checked={goal.completed}
-              onChange={() => handleToggleCompleted(goal.id)}
-              className="mr-2"
-            />
-            <span className="text-lg">{goal.title}</span>
-          </li>
-        ))}
-      </ul>
-      <button
-        onClick={handleDeleteCompleted}
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Delete Completed Goals
-      </button>
+      </div>
     </div>
   );
 };
