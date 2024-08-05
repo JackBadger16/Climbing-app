@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Goals = ({ isAuthenticated }) => {
   const [goals, setGoals] = useState(
@@ -6,6 +7,7 @@ const Goals = ({ isAuthenticated }) => {
       ? JSON.parse(localStorage.getItem("goals"))
       : []
   );
+  
 
   const [newGoal, setNewGoal] = useState(
     localStorage.getItem("newGoal")
@@ -20,12 +22,13 @@ const Goals = ({ isAuthenticated }) => {
   useEffect(() => {
     localStorage.setItem("newGoal", JSON.stringify(newGoal));
   }, [newGoal]);
-
+  const navigate = useNavigate()
   const handleAddGoal = (event) => {
     event.preventDefault();
+    const isAuthenticated = !!localStorage.getItem("token");
     if (!isAuthenticated) {
-      alert("Please login to add goals");
-      return;
+      alert("You need to be logged in to add a Goal.");
+      navigate("/login");
     }
     if (newGoal.trim() !== "") {
       const newGoalObject = {

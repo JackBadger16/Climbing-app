@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 // NewTick Component
 function NewTick({ newTick, handleChange, handleSubmit }) {
@@ -165,8 +166,7 @@ export default function Ticklist() {
       ? JSON.parse(localStorage.getItem("ticks"))
       : []
   );
-  //  removed setIsAuthenticated as it wasn't being used but still works without it.
-  const [isAuthenticated] = useState(false);
+ 
 
   const handleEdit = (tick) => {
     setRemovedTicks((prev) =>
@@ -210,17 +210,23 @@ export default function Ticklist() {
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setNewClimb((prev) => ({ ...prev, id: Date.now(), [name]: value }));
+
   };
 
+  const navigate= useNavigate()
+
   const handleSubmit = (event) => {
-    event.preventDefault();
-    if (!isAuthenticated) {
-      alert("Please login to add a new tick");
-      return;
+    event.preventDefault()
+    if (newClimb.title) {
+      const isAuthenticated =!!localStorage.getItem('token');
+      if (!isAuthenticated) {
+        alert("You need to be logged in to add a climb.");
+        navigate('/login');
+        return;
+      }
+      setAllTicks((prev) => [newClimb,...prev]);
+      setNewClimb({});
     }
-    if (!newClimb.title) return;
-    setAllTicks((prev) => [newClimb, ...prev]);
-    setNewClimb({});
   };
 
   const handleSent = (tickIDToRemove) => {
@@ -275,7 +281,7 @@ export default function Ticklist() {
         <NewTick
           newTick={newClimb}
           handleChange={handleChange}
-          handleSubmit={handleSubmit}
+          handleSubmit={(event) => handleSubmit(event)} 
         />
         <AddedClimbList allTicks={allTicks} handleSent={handleSent} />
         <SentTicksGrid
