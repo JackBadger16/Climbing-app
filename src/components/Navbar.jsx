@@ -54,6 +54,11 @@ const Navbar = () => {
             </a>
           </li>
           <li>
+            <a className="hover:font-bold" href="/weather">
+              Weather
+            </a>
+          </li>
+          <li>
             <a className="hover:font-bold" href="/ticklist">
               Ticklist
             </a>
@@ -98,6 +103,9 @@ const Navbar = () => {
         >
           <li className="py-6 text-4xl hover:font-bold ">
             <a href="/">Home</a>
+          </li>
+          <li className="py-6 text-4xl hover:font-bold ">
+            <a href="/weather">Weather</a>
           </li>
           <li className="py-6 text-4xl hover:font-bold ">
             <a href="/ticklist">Ticklist</a>

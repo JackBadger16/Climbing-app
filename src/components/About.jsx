@@ -17,9 +17,7 @@ const About = () => {
             <p>Climbing app</p>
           </div>
           <div>
-            <p>
-              Info
-            </p>
+            <p>Info</p>
           </div>
         </div>
       </div>

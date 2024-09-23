@@ -6,7 +6,7 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-[#0a192f] p-4 rounded shadow-md"
+      className="bg-[#0a192f] p-4 rounded shadow-md flex flex-col"
     >
       <input
         name="title"
@@ -18,15 +18,23 @@ function NewTick({ newTick, handleChange, handleSubmit }) {
       {!newTick.title ? null : (
         <>
           <textarea
+            name="grade"
+            placeholder="Grade:"
+            value={newTick.grade || ""}
+            onChange={handleChange}
+            className="rounded-md border-2 outline-none focus:border-cyan-400 focus:bg-slate-50 p-2 mb-2 w-full"
+          />
+          <textarea
             name="description"
             placeholder="Details..."
             value={newTick.description || ""}
             onChange={handleChange}
             className="rounded-md border-2 outline-none focus:border-cyan-400 focus:bg-slate-50 p-2 mb-2 w-full"
           />
+
           <button
             type="submit"
-            className="bg-gradient-to-r from-slate-500  text-white py-3 px-6 flex rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500"
+            className="bg-gradient-to-r from-slate-500  text-white py-3 px-6  flex-auto rounded-full shadow-[#040c16] shadow-sm hover:scale-110 duration-500 max-w-40"
           >
             Add Climb
           </button>
@@ -166,7 +174,6 @@ export default function Ticklist() {
       ? JSON.parse(localStorage.getItem("ticks"))
       : []
   );
- 
 
   const handleEdit = (tick) => {
     setRemovedTicks((prev) =>
@@ -210,21 +217,20 @@ export default function Ticklist() {
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setNewClimb((prev) => ({ ...prev, id: Date.now(), [name]: value }));
-
   };
 
-  const navigate= useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     if (newClimb.title) {
-      const isAuthenticated =!!localStorage.getItem('token');
+      const isAuthenticated = !!localStorage.getItem("token");
       if (!isAuthenticated) {
         alert("You need to be logged in to add a climb.");
-        navigate('/login');
+        navigate("/login");
         return;
       }
-      setAllTicks((prev) => [newClimb,...prev]);
+      setAllTicks((prev) => [newClimb, ...prev]);
       setNewClimb({});
     }
   };
@@ -281,7 +287,7 @@ export default function Ticklist() {
         <NewTick
           newTick={newClimb}
           handleChange={handleChange}
-          handleSubmit={(event) => handleSubmit(event)} 
+          handleSubmit={(event) => handleSubmit(event)}
         />
         <AddedClimbList allTicks={allTicks} handleSent={handleSent} />
         <SentTicksGrid

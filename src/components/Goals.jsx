@@ -57,8 +57,8 @@ const Goals = ({ isAuthenticated }) => {
   };
 
   return (
-    <div className="pt-[300px] w-full h-screen bg-[#0a192f] pb-40 ">
-      <div className="max-w-[1000px] mx-auto px-8 flex flex-col justify-center h-full w-full ">
+    <div className="pt-[340px] w-full h-screen bg-[#0a192f] pb-40 ">
+      <div className="max-w-[1000px] mx-auto px-8  justify-center h-full w-full ">
         <h1 className="bg-[#0a192f] text-4xl font-bold inline border-b-4 max-w-[400px] text-gray-300  border-pink-600 ">
           Goal List
         </h1>
